@@ -39,8 +39,8 @@ A complete NestJS todo service with PostgreSQL database integration using TypeOR
 ### 7. Environment
 - `.env.example` - Example environment variables file
 
-## Database Configuration (Placeholder)
-Current configuration uses placeholder credentials:
+## Database Configuration
+The API uses hardcoded PostgreSQL credentials:
 - Host: localhost
 - Port: 5432
 - Username: postgres
@@ -49,25 +49,18 @@ Current configuration uses placeholder credentials:
 
 ## Setup Instructions
 
-1. Create a `.env` file in the project root (copy from `.env.example`):
+1. Install dependencies:
 ```bash
-cp .env.example .env
+npm install
 ```
 
-2. Update the `.env` file with your actual PostgreSQL credentials
-
-3. Install dependencies (already done):
-```bash
-npm install @nestjs/typeorm typeorm pg @nestjs/config class-validator class-transformer
-```
-
-4. Ensure PostgreSQL is running and the database exists:
+2. Ensure PostgreSQL is running and the database exists:
 ```bash
 # Create database
 createdb todo_db
 ```
 
-5. Start the application:
+3. Start the application:
 ```bash
 npm run start:dev
 ```
