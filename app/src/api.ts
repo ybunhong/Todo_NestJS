@@ -1,9 +1,9 @@
 const API_URL = 'http://localhost:3000'
 
-export interface Todo {
+export type Todo = {
   id: number
   title: string
-  completed: boolean
+  status: string
 }
 
 export const getTodos = async (): Promise<Todo[]> => {
@@ -24,7 +24,7 @@ export const createTodo = async (todo: Omit<Todo, 'id'>): Promise<Todo> => {
 
 export const updateTodo = async (id: number, updates: Partial<Todo>): Promise<Todo> => {
   const response = await fetch(`${API_URL}/todo/${id}`, {
-    method: 'PATCH',
+    method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updates),
   })
