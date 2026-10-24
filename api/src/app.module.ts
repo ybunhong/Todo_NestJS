@@ -6,6 +6,10 @@ import { AppService } from './app.service.js';
 import { TodoModule } from './todo/todo.module.js';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { AuthModule } from './auth/auth.module.js';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/jwt-auth.guard.js';
+import { RolesGuard } from './auth/roles.guard.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -30,8 +34,13 @@ const __dirname = dirname(__filename);
       }),
     }),
     TodoModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    { provide: APP_GUARD, useClass: JwtAuthGuard },
+    { provide: APP_GUARD, useClass: RolesGuard },
+  ],
 })
 export class AppModule {}
