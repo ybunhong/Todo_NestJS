@@ -15,17 +15,17 @@ export class TodoRepository {
     return this.repository.save(newTodo);
   }
 
-  async findAll(): Promise<Todo[]> {
-    return this.repository.find();
+  async findAll(userId: string): Promise<Todo[]> {
+    return this.repository.find({ where: { ownerId: userId } });
   }
 
-  async findOne(id: number): Promise<Todo | null> {
-    return this.repository.findOne({ where: { id } });
+  async findOne(id: number, userId: string): Promise<Todo | null> {
+    return this.repository.findOne({ where: { id, ownerId: userId } });
   }
 
   async update(id: number, todo: Partial<Todo>): Promise<Todo> {
     await this.repository.update(id, todo);
-    const updated = await this.findOne(id);
+    const updated = await this.repository.findOne({ where: { id } });
     if (!updated) {
       throw new Error(`Todo with id ${id} not found after update`);
     }
