@@ -1,8 +1,8 @@
 import { Controller, Post, Body, HttpCode, Res, Req } from '@nestjs/common';
 import type { Request, Response } from 'express';
-import { AuthService } from './auth.service.js';
-import { Public } from './decorators/public.decorator.js';
-import { CurrentUser } from './decorators/current-user.decorator.js';
+import { AuthService } from './auth.service';
+import { Public } from '@/auth/decorators/public.decorator';
+import { CurrentUser } from '@/auth/decorators/current-user.decorator';
 
 @Controller('auth')
 export class AuthController {

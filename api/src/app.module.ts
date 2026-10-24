@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller.js';
-import { AppService } from './app.service.js';
-import { TodoModule } from './todo/todo.module.js';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { TodoModule } from '@/todo/todo.module';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { AuthModule } from './auth/auth.module.js';
+import { AuthModule } from '@/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from './auth/jwt-auth.guard.js';
-import { RolesGuard } from './auth/roles.guard.js';
+import { JwtAuthGuard } from '@/auth/jwt-auth.guard';
+import { RolesGuard } from '@/auth/roles.guard';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
