@@ -1,17 +1,19 @@
 import { DataSource } from 'typeorm';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import 'dotenv/config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'postgres',
-  database: 'todo_db',
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT!),
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   entities: [join(__dirname, '**', '*.entity{.ts,.js}')],
-  synchronize: true,
+  migrations: [join(__dirname, 'migrations', '*.ts')],
+  synchronize: false,
 });
