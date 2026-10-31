@@ -7,6 +7,7 @@ import { TodoModule } from '@/todo/todo.module.js';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { AuthModule } from '@/auth/auth.module.js';
+import { UserModule } from '@/user/user.module.js';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from '@/auth/jwt-auth.guard.js';
 import { RolesGuard } from '@/auth/roles.guard.js';
@@ -35,6 +36,7 @@ const __dirname = dirname(__filename);
     }),
     TodoModule,
     AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [
